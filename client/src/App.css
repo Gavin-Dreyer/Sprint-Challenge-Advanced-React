@@ -31,3 +31,16 @@
     transform: rotate(360deg);
   }
 }
+
+.cards{
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+.playerInfo{
+  width: 30%;
+  margin: 1rem;
+
+  box-shadow: 3px 3px 3px 3px;
+}
