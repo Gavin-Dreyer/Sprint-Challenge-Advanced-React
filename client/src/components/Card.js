@@ -68,7 +68,7 @@ class Card extends Component {
                 </div>
                 <div className="cards" data-testid="playerInfoTest">
                     {this.state.cards.map(item => 
-                        <div key={item.id} data-testid="playerInfoCardTest" className='playerInfo'>
+                        <div key={item.id} className='playerInfo'>
                             <p>
                                 {item.name}
                             </p>
