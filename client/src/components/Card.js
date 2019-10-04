@@ -20,7 +20,20 @@ class Card extends Component {
                 this.setState({
                     cards: response.data
                 })
-                console.log(this.state.cards)
+            })
+            .catch(response => {
+                console.log(response)
+            })
+    }
+
+    componentWillUnmount() {
+        axios
+            .get(`http://localhost:5000/api/players`)
+            .then(response => {
+                // console.log(response.data)
+                this.setState({
+                    cards: response.data
+                })
             })
             .catch(response => {
                 console.log(response)
@@ -28,11 +41,20 @@ class Card extends Component {
     }
 
     
-    searchSubmit = (e, value) => {
+    searchNameSubmit = (e, value) => {
         e.preventDefault();
         this.setState({
             cards: this.state.cards.filter(item => 
                 item.name.toLowerCase().includes(value)
+                )
+        })
+    }
+
+    searchCountrySubmit = (e, value) => {
+        e.preventDefault();
+        this.setState({
+            cards: this.state.cards.filter(item => 
+                item.country.toLowerCase().includes(value)
                 )
         })
     }
@@ -42,11 +64,11 @@ class Card extends Component {
         return (
             <>
                 <div >
-                    <SearchBar searchSubmit={this.searchSubmit} data={this.state.cards}/>
+                    <SearchBar searchCountrySubmit={this.searchCountrySubmit} searchNameSubmit={this.searchNameSubmit} data={this.state.cards}/>
                 </div>
-                <div className="cards">
+                <div className="cards" data-testid="playerInfoTest">
                     {this.state.cards.map(item => 
-                        <div key={item.id} className='playerInfo'>
+                        <div key={item.id} data-testid="playerInfoCardTest" className='playerInfo'>
                             <p>
                                 {item.name}
                             </p>

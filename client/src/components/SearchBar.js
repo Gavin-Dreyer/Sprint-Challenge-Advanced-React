@@ -4,27 +4,35 @@ import useSearch from '../Hooks/useSearch';
 
 const SearchBar = (props) => {
     // console.log(props.data)
-    const[search, handleSearch, setSearch] = useSearch()
+    const [nameSearch, handleNameSearch, setNameSearch] = useSearch()
+    const [countrySearch, handleCountrySearch, setCountrySearch] = useSearch()
 
-    console.log(search)
     const handleClick = () => {
-        setSearch('')
+        setNameSearch('')
+        setCountrySearch('')
     }
 
     
     return (
         <form 
         className='searchBar'
-        onSubmit={(e) => props.searchSubmit(e, search)}
         >
             <input 
             onClick={handleClick}
             type='text'
-            name='searchBar'
-            value={search}
-            onChange={handleSearch}
+            name='nameSearchBar'
+            value={nameSearch}
+            onChange={handleNameSearch}
             />
-            <button>Search</button>
+            <button onClick={(e) => props.searchNameSubmit(e, nameSearch)}>Search Name</button>
+            <input 
+            onClick={handleClick}
+            type='text'
+            name='countrySearchBar'
+            value={countrySearch}
+            onChange={handleCountrySearch}
+            />
+            <button onClick={(e) => props.searchCountrySubmit(e, countrySearch)}>Search Country</button>
         </form>
     )
 }
